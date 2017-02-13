@@ -1,0 +1,48 @@
+This modified SDX.Payload.dll will allow you to skip adding the -sdxconfig= parameter to your 7 Days to Die.exe and hard-coded values.
+
+The -sdxconfig parameter is passed to the SDX.PayLoad.dll as a parameter in order to correctly identify where the settings.ini file is located. The settings.ini file has two entries that SDX uses to initialize, TargetDir and TargetName. 
+
+TargetName refers to which XML Node to use when reading the Config.xml. It appears that regardless if you are running Server or client, it always uses "7 Days To Die", so this value is hard-coded now.
+
+TargetDir referes to where to find the Config.xml and the Mods. 
+
+In the compiler structure, we have the following example structure in SDX 0.7.0:
+
+Targets\7DaysToDie\Config.xml
+Targets\7DaysToDie\Mods\HalDllUpdates
+Targets\7DaysToDie\Mods\True Survival SDX
+
+At run time, TargetDir needs to point to folder where that folder structure exists. This DLL edit has hard-coded the TargetDir to point to Application.dataPath.ToString() + "/../". This path will always point to the same folder as your 7daystodie.exe or 7daystodieserver.exe exists, since dataPath points to the 7DaysToDie_Data or 7DaystoDieServer_Data, depending on if its client or server, respectively.
+
+Code Changes:
+
+
+namespace SDX.Payload
+{
+	// Token: 0x02000006 RID: 6
+	public class Entry
+	{
+		// Token: 0x06000012 RID: 18
+		public static void Setup()
+		{
+			PathHelper.IsPayload = true;
+			Logging.OnLogEvent arg_11_0 = Logging.Logged;
+			Entry.ParseCommandLineArgs();
+			string text = Application.dataPath.ToString() + "/../";
+			string targetName = "7 Days To Die";
+			List<AppTargetInfo> list = AppTargetInfo.LoadFromDir(text);
+			if (list == null)
+			{
+				Logging.LogError("Failed to load appTarget at path: " + text);
+				return;
+			}
+			AppTargetInfo appTargetInfo = list.FirstOrDefault((AppTargetInfo t) => t.Name == targetName);
+			if (appTargetInfo == null)
+			{
+				Logging.LogError(string.Format("Target with name '{0}' does not exist in targetDir '{1}'", targetName, text));
+				return;
+			}
+			ModManager.SetTarget(appTargetInfo);
+			ModEngine.Instance.Init();
+		}
+		
