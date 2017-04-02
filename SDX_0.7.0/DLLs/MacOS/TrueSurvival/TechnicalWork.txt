@@ -1,0 +1,21 @@
+Had to comment out XInputDotNetPure in ItemActionRangedAt.cs
+
+using UnityEngine;
+using UnityEngine.Audio;
+//using XInputDotNetPure;
+using Object = UnityEngine.Object;
+
+
+Using SteamCMD, I grabbed a copy of MacOS version:
+
+
+Steam>@sSteamCmdForcePlatformType macos
+"@sSteamCmdForcePlatformType" = "macos"
+
+Steam>force_install_dir macos
+
+Steam>app_update 251570 vaidate
+
+Then, going into 7DaysToDie.app\Contents\Resources\Data\Managed, copied all the DLL files into a Windows copy of 7 Days to Die
+
+Then use SDX Launcher normally
