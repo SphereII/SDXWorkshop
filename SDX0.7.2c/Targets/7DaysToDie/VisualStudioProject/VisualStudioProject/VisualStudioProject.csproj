@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2AC4B31F-EC09-428E-A659-35AC79167EF0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VisualStudioProject</RootNamespace>
+    <AssemblyName>VisualStudioProject</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\..\7DaysToDie_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\..\..\..\7DaysToDie_Data\Managed\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Mods">
+      <HintPath>..\..\..\..\..\7DaysToDie_Data\Managed\Mods.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>..\..\..\..\..\7DaysToDie_Data\Managed\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Data.Tds">
+      <HintPath>..\..\..\..\..\7DaysToDie_Data\Managed\Mono.Data.Tds.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\7DaysToDie_Data\Managed\Mono.Posix.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Security">
+      <HintPath>..\..\..\..\..\7DaysToDie_Data\Managed\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.WebBrowser">
+      <HintPath>..\..\..\..\..\7DaysToDie_Data\Managed\Mono.WebBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="SDX.Compiler">
+      <HintPath>..\..\..\..\..\7DaysToDie_Data\Managed\SDX.Compiler.dll</HintPath>
+    </Reference>
+    <Reference Include="SDX.Core">
+      <HintPath>..\..\..\..\..\7DaysToDie_Data\Managed\SDX.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SDX.Payload">
+      <HintPath>..\..\..\..\..\7DaysToDie_Data\Managed\SDX.Payload.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\..\7DaysToDie_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Mods\AnimationSDX\Scripts\AnimationSDX.cs" />
+    <Compile Include="Mods\AutoFavourites\PatchScripts\Autofavourites.cs" />
+    <Compile Include="Mods\AutoFavourites\Scripts\AutoFavourites.cs" />
+    <Compile Include="Mods\CraftingLag\PatchScripts\CraftingLagFixes.cs" />
+    <Compile Include="Mods\WinterMod\PatchScripts\WinterMod.cs" />
+    <Compile Include="Mods\WinterMod\Scripts\Santa.cs" />
+    <Compile Include="Mods\WinterMod\Scripts\SantaClausConfig.cs" />
+    <Compile Include="Mods\WinterMod\Scripts\SantaClausEvents.cs" />
+    <Compile Include="Mods\WinterMod\Scripts\SnowFillBlock.cs" />
+    <Compile Include="Mods\WinterMod\Scripts\Spawner.cs" />
+    <Compile Include="Mods\WinterMod\Scripts\WorldBlockTicker.cs" />
+    <Compile Include="Mods\ZombieTransmogrifier\PatchScripts\EntityAlive.cs" />
+    <Compile Include="Mods\ZombieTransmogrifier\PatchScripts\PatcherHalDll.cs" />
+    <Compile Include="Mods\ZombieTransmogrifier\Scripts\EntityZombieCopSDX.cs" />
+    <Compile Include="Mods\ZombieTransmogrifier\Scripts\EntityZombieCrawlSDX.cs" />
+    <Compile Include="Mods\ZombieTransmogrifier\Scripts\EntityZombieSDX.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Mods\AnimationSDX\Configs\AnimationSDX.xml" />
+    <Content Include="Mods\AnimationSDX\mod.xml" />
+    <Content Include="Mods\AutoFavourites\mod.xml" />
+    <Content Include="Mods\AutoFavourites\ReadMe.txt" />
+    <Content Include="Mods\CraftingLag\mod.xml" />
+    <Content Include="Mods\CraftingLag\ReadMe.txt" />
+    <Content Include="Mods\Medieval\Config\Medieval.xml" />
+    <Content Include="Mods\Medieval\Icons\ui_game_symbol_cubetest.png" />
+    <Content Include="Mods\Medieval\mod.xml" />
+    <Content Include="Mods\Nightmares\Configs\Nightmares.xml" />
+    <Content Include="Mods\Nightmares\mod.xml" />
+    <Content Include="Mods\Nightmares\Text\English.txt" />
+    <Content Include="Mods\WinterMod\Configs\Archtypes.xml" />
+    <Content Include="Mods\WinterMod\Configs\Winter.xml" />
+    <Content Include="Mods\WinterMod\Icons\casinoCoin.png" />
+    <Content Include="Mods\WinterMod\Icons\Cookies.png" />
+    <Content Include="Mods\WinterMod\Icons\deadKitten.png" />
+    <Content Include="Mods\WinterMod\Icons\GoodSanta.png" />
+    <Content Include="Mods\WinterMod\Icons\Kitten.png" />
+    <Content Include="Mods\WinterMod\Icons\RealSanta.png" />
+    <Content Include="Mods\WinterMod\mod.xml" />
+    <Content Include="Mods\XmasPack\Config\XmasPack.xml" />
+    <Content Include="Mods\XmasPack\Icons\xmasGift.png" />
+    <Content Include="Mods\XmasPack\Icons\xmasGifts.png" />
+    <Content Include="Mods\XmasPack\Icons\xmasTree.png" />
+    <Content Include="Mods\XmasPack\mod.xml" />
+    <Content Include="Mods\ZombieTransmogrifier\Configs\EntityClasses.xml" />
+    <Content Include="Mods\ZombieTransmogrifier\mod.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Mods\Medieval\Resources\RedRockBlock.unity3d" />
+    <None Include="Mods\Medieval\Resources\SandStoneBlocks.unity3d" />
+    <None Include="Mods\Medieval\Resources\StoneBlock.unity3d" />
+    <None Include="Mods\Medieval\Resources\ThatchBlocks.unity3d" />
+    <None Include="Mods\Medieval\Resources\WaddleBlocks.unity3d" />
+    <None Include="Mods\Nightmares\Resources\AfroShamanSounds.unity3d" />
+    <None Include="Mods\Nightmares\Resources\Dinosaurs.unity3d" />
+    <None Include="Mods\Nightmares\Resources\Mechanic.unity3d" />
+    <None Include="Mods\Nightmares\Resources\Mutant.unity3d" />
+    <None Include="Mods\Nightmares\Resources\Nightmares.unity3d" />
+    <None Include="Mods\Nightmares\Resources\Samuzai.unity3d" />
+    <None Include="Mods\WinterMod\Resources\ArcticFox.unity3d" />
+    <None Include="Mods\WinterMod\Resources\BadSanta.unity3d" />
+    <None Include="Mods\WinterMod\Resources\GoodSanta.unity3d" />
+    <None Include="Mods\WinterMod\Resources\Kitten.unity3d" />
+    <None Include="Mods\WinterMod\Resources\PolarBear.unity3d" />
+    <None Include="Mods\WinterMod\Resources\SantaSounds.unity3d" />
+    <None Include="Mods\WinterMod\Resources\SealCub.unity3d" />
+    <None Include="Mods\WinterMod\Resources\SurfaceResources.unity3d" />
+    <None Include="Mods\XmasPack\Resources\Abominable.unity3d" />
+    <None Include="Mods\XmasPack\Resources\AbominableSounds.unity3d" />
+    <None Include="Mods\XmasPack\Resources\BlackSanta.unity3d" />
+    <None Include="Mods\XmasPack\Resources\Candle.unity3d" />
+    <None Include="Mods\XmasPack\Resources\Gifts.unity3d" />
+    <None Include="Mods\XmasPack\Resources\LightStrings.unity3d" />
+    <None Include="Mods\XmasPack\Resources\Poinsettia.unity3d" />
+    <None Include="Mods\XmasPack\Resources\Rabbit.unity3d" />
+    <None Include="Mods\XmasPack\Resources\Skull.unity3d" />
+    <None Include="Mods\XmasPack\Resources\SnowGoddess.unity3d" />
+    <None Include="Mods\XmasPack\Resources\Snowman.unity3d" />
+    <None Include="Mods\XmasPack\Resources\SnowShovel.unity3d" />
+    <None Include="Mods\XmasPack\Resources\Stockings.unity3d" />
+    <None Include="Mods\XmasPack\Resources\WinterBlocks.unity3d" />
+    <None Include="Mods\XmasPack\Resources\WrappingStation.unity3d" />
+    <None Include="Mods\XmasPack\Resources\Wreath.unity3d" />
+    <None Include="Mods\XmasPack\Resources\XmasCandle.unity3d" />
+    <None Include="Mods\XmasPack\Resources\XmasPoster01.unity3d" />
+    <None Include="Mods\XmasPack\Resources\XmasTree.unity3d" />
+    <None Include="Mods\XmasPack\Resources\ZombieWalker.unity3d" />
+    <None Include="Mods\ZombieTransmogrifier\ReadMe.md" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

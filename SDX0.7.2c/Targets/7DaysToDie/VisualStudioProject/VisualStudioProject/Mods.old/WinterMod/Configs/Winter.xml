@@ -1,0 +1,484 @@
+<configs>
+
+
+	<config name="recipes">
+		<!-- Bedroll and other things need cottonPlants, but there's likely none to be found in the world. Replace with feathrs -->
+		<set xpath="/recipes/recipe/ingredient[@name='cottonPlant']/@name">feather</set>
+		<!-- doesn't make sense to make cloth out of feather, so just change it back to cottonPlant. Players can scrap clothes for cloth -->
+		<set xpath="/recipes/recipe[@name='cloth']/ingredient[@name='feather']/@name">cottonPlant</set>
+	</config>
+	<config name="blocks">	
+		<append xpath="/blocks">	
+			<!-- the snowFill block is actually a plant, that will die if its light level isn't high enough -->
+			<block id="*" name="snowFill">
+				<property name="Extends" value="snow" />
+				<property name="Class" value="SnowFill, Mods" />
+				<property name="LightLevelStay" value="13" />
+				<property name="LightOpacity" value="0" />
+				<drop event="Harvest" name="snowBall" count="10" tool_category="harvestingTools" />
+				<drop event="Destroy" count="0" />
+				<drop event="Fall" name="snow" count="1" prob="0.25" stick_chance="1" />
+				<drop event="Fall" name="snowBall" count="20" prob="0.187" stick_chance="0" />
+			</block>
+
+			<block id="" name="air2" >
+				<property name="Material" value="air" />
+				<property name="StabilitySupport" value="true" />
+				<property name="Shape" value="Invisible" />
+			</block>
+			<!--Vending Machine -->
+			<block id="" name="GoodSanta">
+				<property name="Group" value="Science" />
+				<property name="DescriptionKey" value="cntVendingMachineGroupDesc" />
+				<property name="Material" value="Mmetal_medium" />
+				<property name="LightOpacity" value="0" />
+				<property name="StabilitySupport" value="false" />
+
+				<property name="Class" value="SantaVending, Mods" />
+				<property name="Shape" value="ModelEntity" />
+				<property name="Model" value="#GoodSanta?Santa_Character" />
+				<property name="MultiBlockDim" value="1,2,1" />
+				<property name="ImposterExchange" value="imposterBlock" param1="143" />
+				<property name="OnlySimpleRotations" value="true" />
+				<property name="Place" value="TowardsPlacerInverted" />
+				<property class="RepairItems">
+					<property name="forgedIron" value="5" />
+				</property>
+				<property name="TraderID" value="99" />
+				<property name="Stacknumber" value="10" />
+				<property name="EconomicValue" value="2000" />
+				<property name="Buff" value="shockedBuff" />
+				<drop event="Destroy" count="0" />
+
+			</block>
+
+			<!--Vending Machine -->
+			<block id="" name="RealSanta">
+				<property name="Group" value="Science" />
+				<property name="DescriptionKey" value="cntVendingMachineGroupDesc" />
+				<property name="Material" value="Mmetal_medium" />
+				<property name="LightOpacity" value="0" />
+				<property name="StabilitySupport" value="false" />
+
+				<property name="Class" value="SantaVending, Mods" />
+				<property name="Shape" value="ModelEntity" />
+				<property name="Model" value="#BadSanta?ZombieClaus" />
+				<property name="MultiBlockDim" value="1,2,1" />
+				<property name="ImposterExchange" value="imposterBlock" param1="143" />
+				<property name="OnlySimpleRotations" value="true" />
+				<property name="Place" value="TowardsPlacerInverted" />
+				<property class="RepairItems">
+					<property name="forgedIron" value="5" />
+				</property>
+				<property name="TraderID" value="98" />
+				<property name="Stacknumber" value="10" />
+				<property name="EconomicValue" value="2000" />
+				<property name="Buff" value="shockedBuff" />
+				<drop event="Destroy" count="0" />
+			</block>
+
+			<!-- Terrain blocks -->
+			<block id="" name="arcticRock01">
+				<property name="CreativeMode" value="Dev" />
+				<property name="Material" value="Mboulder" />
+				<property name="Shape" value="ModelEntity" />
+				<property name="IsTerrainDecoration" value="true" />
+				<property name="BigDecorationRadius" value="2" />
+				<property name="ImposterDontBlock" value="true" />
+				<property name="Collide" value="movement,melee,bullet,arrow,rocket" />
+				<property name="PassThroughDamage" value="true" />
+				<drop event="Harvest" name="rockSmall" count="33" tool_category="harvestingTools" />
+				<drop event="Harvest" name="ironFragment" count="11" tool_category="harvestingTools" />
+				<drop event="Harvest" name="coal" count="10" prob="0.33" tool_category="harvestingTools" />
+				<drop event="Harvest" name="potassiumNitratePowder" count="10" prob="0.33" tool_category="harvestingTools" />
+				<drop event="Harvest" name="scrapLead" count="10" prob="0.33" tool_category="harvestingTools" />
+				<drop event="Destroy" count="0" />
+				<property name="Map.Color" value="120,120,120" />
+				<property name="Model" value="#SurfaceResources?Rock02" />
+			</block>
+
+			<block id="" name="arcticRock02" >
+				<property name="Extends" value="arcticRock01" />
+				<property name="Model" value="#SurfaceResources?Rock04" />
+
+			</block>
+
+			<!-- Kitten -->
+			<block id="" name="KittenBlock" >
+				<property name="Material" value="organic" />
+				<property name="MaxDamage" value="10" />
+				<property name="Shape" value="ModelEntity" />
+				<property name="Model" value="#Kitten?KittenReward" />
+				<property name="CanPickup" value="true" />
+				<property name="Collide" value="movement,melee,bullet,arrow,rocket" />
+				<property name="DescriptionKey" value="Kitten" />
+				<drop event="Destroy" name="deadKitten" count="1"  />
+				
+				<property name="CanPlayersSpawnOn" value="false" />
+				<property name="ParticleOnDeath" value="blood_death" />
+				<property name="EconomicValue" value="300" />
+			</block>
+		</append>
+
+	</config> 
+
+	<config name="items">
+		<append xpath="/items">
+			<item id="" name="Kitten">
+				<property name="DescriptionKey" value="kitty" />
+				<property name="Meshfile" value="Items/Misc/parcelPrefab" />
+				<property name="DropMeshfile" value="Items/Misc/sack_droppedPrefab" />
+				<property name="Material" value="organic" />
+				<property name="HoldType" value="31" />
+				<property name="Stacknumber" value="10" />		
+				<property class="Action1">
+					<property name="Class" value="PlaceAsBlock" />
+					<property name="Delay" value="0.1" />
+					<property name="Blockname" value="KittenBlock" />
+				</property>
+				<property name="Group" value="Basics,Decor/Miscellaneous" />
+				<property name="EconomicValue" value="25" />
+			</item>
+
+			<item id="" name="Cookies">
+				<property name="Meshfile" value="Items/Misc/parcelPrefab" />
+				<property name="DropMeshfile" value="Items/Misc/sack_droppedPrefab" />
+				<property name="HoldType" value="31" />
+				<property name="Material" value="organic" />
+				<property name="Stacknumber" value="50" />
+				<property name="EconomicValue" value="52" />
+				<property class="Action1">
+					<property name="Class" value="Eat" />
+					<property name="Delay" value="2.1" />
+					<property name="Use_time" value="..." />
+					<property name="Gain_health" value="0" />
+					<property name="Gain_food" value="2" />
+					<property name="Buff" value="eatFood_9_Trigger" />
+					<property name="Gain_water" value="0" />
+					<property name="Gain_wellness" value="0.675" />
+					<property name="Sound_start" value="player_eating" />
+				</property>
+				<property name="Smell" value="smallSmell" />
+				<property name="Group" value="Food/Cooking" />
+			</item>
+
+			<item id="" name="deadKitten">
+				<property name="DescriptionKey" value="kitty" />
+				<property name="Meshfile" value="Items/Misc/parcelPrefab" />
+				<property name="DropMeshfile" value="Items/Misc/sack_droppedPrefab" />
+				<property name="Material" value="organic" />
+				<property name="HoldType" value="31" />
+				<property name="Stacknumber" value="10" />		
+				
+				<property name="Group" value="Basics,Decor/Miscellaneous" />
+				<property name="EconomicValue" value="25" />
+			</item>
+		</append>
+	</config>
+
+	<config name="recipes">
+		<append xpath="/recipes">
+			<recipe name="GoodSanta" count="1" craft_area="wrappingStation">
+				<ingredient name="Kitten" count="10" />
+				<ingredient name="Cookies" count="100" />
+			</recipe>		
+
+			<recipe name="RealSanta" count="1" craft_area="wrappingStation">
+				<ingredient name="deadKitten" count="10" />
+				<ingredient name="Cookies" count="100" />
+			</recipe>	
+
+				
+		</append>
+	</config>
+	<config name="traders">
+		<append xpath="/traders" >
+			<!-- Good Santa! -->
+			<trader_info id="99" reset_interval="1" override_buy_markup="1.0" allow_sell="false" min_inventory="6" max_inventory="13" min_items_swapped="6" max_items_swapped="13">
+				<trader_items count="14">
+					<item name="xmasGifts" count="1,10" />
+					<item name="snowShovel" count="1,10" />
+					<item name="xmasTree" count="1,10" />
+					<item name="stockings1" count="1,10" />
+					<item name="wreath" count="1,10" />
+					<item name="candyCane" count="1,10" />
+					<item name="xmasCandle" count="1,10" />
+					<item name="stockings2" count="1,10" />
+					<item name="goldenRodTea" count="1,10" />
+					<item name="xmasGift" count="1,10" />
+					<item name="poinsettia" count="1,10" />
+					<item name="lightStringDiag" count="1,10" />
+					<item name="lightString" count="1,10" />
+					<item name="rabbitBlock" count="1,10" />
+				</trader_items>
+			</trader_info>
+
+			<!-- Bad Santa! -->
+			<trader_info id="98" reset_interval="1" override_buy_markup="1.0" allow_sell="false" min_inventory="6" max_inventory="13" min_items_swapped="6" max_items_swapped="13">
+				<trader_items count="10">
+					<item group="weaponsGunsMilitary" count="2,7" prob="0.3"/>
+					<item group="weaponsGunsCommon" count="2,10" prob="0.8"/>
+					<item group="ammoSupplies" count="2,3" prob="0.4"/>
+					<item group="banditArmor" count="4,10" prob="0.4"/>
+				</trader_items>
+			</trader_info>
+		</append>
+	</config>
+
+	<config name="sounds">
+		<append xpath="/Sounds">
+
+			<SoundDataNode name="GoodSantaGreetingSounds">
+				<AudioSource name="Sounds/AudioSource_VO" />
+				<Noise ID="3" range="100" volume="25" time="10" muffled_when_crouched="0.65" heat_map_strength="0.05" heat_map_time="60" />
+				<AudioClip ClipName="#SantaSounds?01_B_Santa_MynameIsSantaMerryChristmas" />
+				<LocalCrouchVolumeScale name="1.0" />
+				<CrouchNoiseScale name="0.5" />
+				<NoiseScale name="1" />
+				<MaxVoices name="10" />
+				<MaxRepeatRate name="1.111" />
+			</SoundDataNode> 
+
+			<SoundDataNode name="GoodSantaSounds">
+				<AudioSource name="Sounds/AudioSource_VO" />
+				<Noise ID="3" range="100" volume="25" time="10" muffled_when_crouched="0.65" heat_map_strength="0.05" heat_map_time="60" />
+				<AudioClip ClipName="#SantaSounds?01_A_Santa_NewYear_talk" />
+				<AudioClip ClipName="#SantaSounds?01_A_Santa_NicePresent_talk" />
+				<AudioClip ClipName="#SantaSounds?01_A_Santa_WhatDoYouWant_talk" />
+				<AudioClip ClipName="#SantaSounds?02_A_HoHo" />
+				<AudioClip ClipName="#SantaSounds?02_B_HaHa" />
+				<AudioClip ClipName="#SantaSounds?03_A_merryxMasToEveryone" />
+				<AudioClip ClipName="#SantaSounds?03_B_merryxMas" />
+				<AudioClip ClipName="#SantaSounds?05_NaughtyOrNice" />
+				<AudioClip ClipName="#SantaSounds?06_HopeWishesComeTrue" />
+				<LocalCrouchVolumeScale name="1.0" />
+				<CrouchNoiseScale name="0.5" />
+				<NoiseScale name="1" />
+				<MaxVoices name="10" />
+				<MaxRepeatRate name="1.111" />
+			</SoundDataNode> 
+
+			<SoundDataNode name="GoodSantaByeSounds">
+				<AudioSource name="Sounds/AudioSource_VO" />
+				<Noise ID="3" range="100" volume="25" time="10" muffled_when_crouched="0.65" heat_map_strength="0.05" heat_map_time="60" />
+				<AudioClip ClipName="#SantaSounds?10_CU_nextYear" />
+				<AudioClip ClipName="#SantaSounds?01_A_Santa_ReturnNorthpole_talk" />
+
+				<LocalCrouchVolumeScale name="1.0" />
+				<CrouchNoiseScale name="0.5" />
+				<NoiseScale name="1" />
+				<MaxVoices name="10" />
+				<MaxRepeatRate name="1.111" />
+			</SoundDataNode> 
+		</append>
+	</config>
+	<config name="entityclasses">
+		<append xpath="/entity_classes">
+		<!--
+			<entity_class name="ArcticFox" extends="SDXTemplate">
+				<property name="Mesh" value="#ArcticFox?Arcticfox" />
+				<property name="Class" value="EntityEnemyAnimal"/>
+				<property name="IsEntityAnimal" value="true" />
+
+				<property name="HandItem" value="handAnimalWolf"/>
+				<property name="WalkType" value="1"/>
+				<property name="ModelType" value="Standard"/>
+				<property name="CanClimbLadders" value="false"/>
+				<property name="PhysicsBody" value="wolf"/>
+				<property name="RootMotion" value="false"/>
+				<property name="HasDeathAnim" value="true"/>
+				<property name="MaxHealth" value="150"/>
+				<property name="ExperienceGain" value="2916"/>
+				<property name="Weight" value="70"/>
+				<property name="PushFactor" value="20"/>
+				<property name="Explosion.ParticleIndex" value="8"/>
+				<property name="Explosion.RadiusBlocks" value="5"/>
+				<property name="Explosion.RadiusEntities" value="6"/>
+				<property name="Explosion.BlockDamage" value="500"/>
+				<property name="Explosion.EntityDamage" value="150"/>
+				<property name="Explosion.DamageBonus.earth" value="0"/>
+				<property name="HeadDismemberBonusChance" value="0.08"/>
+				<property name="HeadDismemberThreshold" value="0"/>
+				<property name="LowerLegDismemberThreshold" value="0"/>
+				<property name="UpperLegDismemberThreshold" value="0"/>
+				<property name="LowerArmDismemberThreshold" value="0"/>
+				<property name="UpperArmDismemberThreshold" value="0"/>
+				<property name="LegCrawlerThreshold" value="0"/>
+				<property name="LegCrippleThreshold" value="0"/>
+				<property name="KnockdownProneDamageThreshold" value="0"/>
+				<property name="KnockdownKneelDamageThreshold" value="0"/>
+				<property name="LegsExplosionDamageMultiplier" value="2"/>
+				
+				<property name="ArmsExplosionDamageMultiplier" value="2"/>
+				<property name="HeadExplosionDamageMultiplier" value="2"/>
+				<property name="ChestExplosionDamageMultiplier" value="2"/>
+				<drop event="Harvest" name="rottingFlesh" tool_category="Butcher" count="0"/>				
+				<property name="MaxTurnSpeed" value="180"/>
+				<property name="MaxViewAngle" value="270"/>
+
+				
+				<property name="AnimationIdle" value="idle" />
+				<property name="AnimationSecondIdle" value="hunt" />
+				<property name="AnimationMainAttack" value="attack" />
+
+				<property name="AnimationJump" value="jump" />
+				<property name="AnimationPain" value="hit" />
+				<property name="AnimationDeath" value="die" />
+				<property name="AnimationRun" value="trot" />
+				<property name="AnimationWalk" value="walk" />
+
+				
+				<property name="SoundRandom" value="Animals/Wolf/wolfroam"/>
+				<property name="SoundAlert" value="Animals/Wolf/wolfalert"/>
+				<property name="SoundHurt" value="Animals/Wolf/wolfpain"/>
+				<property name="SoundDeath" value="Animals/Wolf/wolfdeath"/>
+				<property name="SoundAttack" value="Animals/Wolf/wolfattack"/>
+				<property name="SoundSense" value="Animals/Wolf/wolfsense"/>
+				<property name="SoundGiveUp" value="Animals/Wolf/wolfgiveup"/>
+				<property name="ExperienceGain" value="1407"/>
+
+				
+				<property name="AITarget-1" value="SetNearestEntityAsTarget" param1="EntityEnemyAnimal"/>
+				<property name="AITask-1" value="BreakDoor" param2="5"/>
+				<property name="AITask-2" value="BreakBlock" param2="5"/>
+				<property name="AITask-3" value="BlockingTargetTask"/>
+				<property name="AITask-4" value="RangedAttackTarget" param1="2" param2="0"/>
+				<property name="AITask-5" value="ApproachAndAttackTarget" param1="EntityEnemyAnimal"/>
+				<property name="AITarget-2" value="SetNearestEntityAsTarget" param1="EntityAnimalStag"/>
+				<property name="AITask-6" value="BreakDoor" param2="5"/>
+				<property name="AITask-7" value="BreakBlock" param2="5"/>
+				<property name="AITask-8" value="BlockingTargetTask"/>
+				<property name="AITask-9" value="RangedAttackTarget" param1="2" param2="0"/>
+				<property name="AITask-10" value="ApproachAndAttackTarget" param1="EntityAnimalStag"/>
+				<property name="AITarget-3" value="SetNearestEntityAsTarget" param1="EntityNPC"/>
+				<property name="AITask-11" value="BreakDoor" param2="5"/>
+				<property name="AITask-12" value="BreakBlock" param2="5"/>
+				<property name="AITask-13" value="BlockingTargetTask"/>
+				<property name="AITask-14" value="RangedAttackTarget" param1="2" param2="0"/>
+				<property name="AITask-15" value="ApproachAndAttackTarget" param1="EntityNPC"/>
+				<property name="AITarget-4" value="SetNearestEntityAsTarget" param1="EntityPlayer"/>
+				<property name="AITask-16" value="BreakDoor" param2="5"/>
+				<property name="AITask-17" value="BreakBlock" param2="5"/>
+				<property name="AITask-18" value="BlockingTargetTask"/>
+				
+				<property name="AITask-19" value="RangedAttackTarget" param1="2" param2="0"/>
+				<property name="AITask-20" value="ApproachAndAttackTarget" param1="EntityPlayer" />
+				<property name="AITask-21" value="SetAsTargetIfHurt" param1="EntityEnemyAnimal"/>
+				<property name="AITask-22" value="SetAsTargetIfHurt" param1="EntityNPC"/>
+				<property name="AITask-23" value="SetAsTargetIfHurt" param1="EntityPlayer" param2="60"/>
+				<property name="AITask-24" value="ApproachSpot"/>
+				<property name="AITask-25" value="Wander"/>
+
+				<drop event="Harvest" name="rawMeat" tool_category="Butcher" count="5"/>
+				
+				<drop event="Harvest" name="animalHide" tool_category="Butcher" count="10"/>
+				<drop event="Harvest" name="animalFat" tool_category="Butcher" count="5"/>
+				<drop event="Harvest" name="femur" tool_category="Butcher" count="2"/>
+			</entity_class>
+-->
+			<!-- Polar bear will extend from the Hostile template, over-riding the AvatarController with the AnimationSDX -->
+			<entity_class name="PolarBear" extends="animalTemplateHostile">
+				<property name="AvatarController" value="AnimationSDX, Mods" />
+
+				<property name="Mesh" value="#PolarBear?Polarbear" />
+				<property name="Class" value="EntityEnemyAnimal"/>
+				<property name="IsEntityAnimal" value="true" />
+				<property name="HandItem" value="handAnimalZombieBear"/>
+				<property name="WalkType" value="1"/>
+				<property name="ModelType" value="Standard"/>
+
+				<property name="ApproachSpeed" value="1.1" />
+				<property name="CanClimbLadders" value="false"/>
+				<property name="PhysicsBody" value="bear"/>
+				<property name="RootMotion" value="false"/>
+				<property name="HasDeathAnim" value="true"/>
+				<property name="MaxHealth" value="1200"/>
+				<property name="ExperienceGain" value="2916"/>
+				<property name="Weight" value="70"/>
+				<property name="PushFactor" value="20"/>
+
+				<property name="MaxTurnSpeed" value="180"/>
+				<property name="MaxViewAngle" value="270"/>
+
+				<!-- Animations -->
+				<property name="AnimationIdle" value="Fight Idle" />
+				<property name="AnimationSecondIdle" value="" />
+				<property name="AnimationMainAttack" value="Attack" />
+				<property name="AnimationSecondAttack" value="Attack With Ripping" />
+				<property name="AnimationJump" value="Jumping" />
+				<property name="AnimationPain" value="Hit Front" />
+				<property name="AnimationDeath" value="Death" />
+				<property name="AnimationRun" value="Run" />
+				<property name="AnimationWalk" value="Walk" />
+
+
+				<!-- Default sounds for now -->
+				<property name="SoundHurt" value="Animals/Bear/bearpain"/>
+				<property name="SoundDeath" value="Animals/Bear/beardeath"/>
+				<property name="SoundRandom" value="Animals/Bear/bearroam"/>
+				<property name="SoundSense" value="Animals/Bear/bearsense"/>
+				<property name="SoundAlert" value="Animals/Bear/bearalert"/>
+				<property name="SoundAttack" value="Animals/Bear/bearattack"/>
+				<property name="SoundFootstepModifier" value="Animals/Bear/bear_footstep"/>
+				<property name="SoundGiveUp" value="Animals/Bear/beargiveup"/>
+				<property name="ExperienceGain" value="2509"/>
+				<property name="DeadBodyHitPoints" value="600"/>
+
+
+				<!-- general AI task from xyth -->
+				<property name="AITarget-1" value="SetNearestEntityAsTarget" param1="EntityEnemyAnimal"/>
+				<property name="AITask-1" value="BreakDoor" param2="5"/>
+				<property name="AITask-2" value="BreakBlock" param2="5"/>
+				<property name="AITask-3" value="BlockingTargetTask"/>
+				<property name="AITask-4" value="RangedAttackTarget" param1="2" param2="0"/>
+				<property name="AITask-5" value="ApproachAndAttackTarget" param1="EntityEnemyAnimal"/>
+				<property name="AITarget-2" value="SetNearestEntityAsTarget" param1="EntityAnimalStag"/>
+				<property name="AITask-6" value="BreakDoor" param2="5"/>
+				<property name="AITask-7" value="BreakBlock" param2="5"/>
+				<property name="AITask-8" value="BlockingTargetTask"/>
+				<property name="AITask-9" value="RangedAttackTarget" param1="2" param2="0"/>
+				<property name="AITask-10" value="ApproachAndAttackTarget" param1="EntityAnimalStag"/>
+				<property name="AITarget-3" value="SetNearestEntityAsTarget" param1="EntityNPC"/>
+				<property name="AITask-11" value="BreakDoor" param2="5"/>
+				<property name="AITask-12" value="BreakBlock" param2="5"/>
+				<property name="AITask-13" value="BlockingTargetTask"/>
+				<property name="AITask-14" value="RangedAttackTarget" param1="2" param2="0"/>
+				<property name="AITask-15" value="ApproachAndAttackTarget" param1="EntityNPC"/>
+				<property name="AITarget-4" value="SetNearestEntityAsTarget" param1="EntityPlayer"/>
+				<property name="AITask-16" value="BreakDoor" param2="5"/>
+				<property name="AITask-17" value="BreakBlock" param2="5"/>
+				<property name="AITask-18" value="BlockingTargetTask"/>
+				<!--				<property name="AITask-19" value="RangedAttackTarget" param1="1" param2="5"/> -->
+				<property name="AITask-19" value="RangedAttackTarget" param1="2" param2="0"/>
+				<property name="AITask-20" value="ApproachAndAttackTarget" param1="EntityPlayer" />
+				<property name="AITask-21" value="SetAsTargetIfHurt" param1="EntityEnemyAnimal"/>
+				<property name="AITask-22" value="SetAsTargetIfHurt" param1="EntityNPC"/>
+				<property name="AITask-23" value="SetAsTargetIfHurt" param1="EntityPlayer" param2="60"/>
+				<property name="AITask-24" value="ApproachSpot"/>
+				<property name="AITask-25" value="Wander"/>
+
+				<!-- animalBear -->
+				<drop event="Harvest" name="rawMeat" tool_category="Butcher" count="15"/>
+				<drop event="Harvest" name="animalHide" tool_category="Butcher" count="15"/>
+				<drop event="Harvest" name="animalFat" tool_category="Butcher" count="7"/>
+				<drop event="Harvest" name="femur" tool_category="Butcher" count="4"/>
+			</entity_class>
+		</append>
+	</config>
+
+
+	<config name="entitygroups" >
+		<append xpath="/entitygroups/entitygroup[@name='EnemyAnimalsSnow']" >
+	
+			<entity name="PolarBear" prob="0.01" />
+		</append>
+
+	</config>
+</configs>
+
+
+<!-- Place the trees down to the old 'ground' 
+	
+		<set xpath="/blocks/block[starts-with(@name, 'cntTreeStump')]/property[@name='ModelOffset']/@value">0,-12.2,0</set>
+		
+		-->
