@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-
+using SDX.Payload;
 // Extending HAL9000's Zombies Run In Dark mod by adding speed variation
 public class EntityZombieSDX: EntityZombie
     {
@@ -24,11 +24,18 @@ public class EntityZombieSDX: EntityZombie
     private float flEyeHeight = 0.0f;
     // set to true if you want the zombies to run in the dark.
     bool blRunInDark = false;
+    private EntityAlive entityAlive;
 
+    public EntityZombieSDX()
+    {
+        this.entityAlive = this.transform.gameObject.GetComponent<EntityAlive>();
+       
+
+
+    }
     public override void Init(int _entityClass)
     {
         base.Init(_entityClass);
-
         // This is the distributed random heigh multiplier. Add or adjust values as you see fit. By default, it's just a small adjustment.
         float[] numbers = new float[9] { 0.8f, 0.8f, 0.9f, 0.9f, 1.0f, 1.0f,1.0f,1.1f, 1.1f };
         int randomIndex = random.Next(0, numbers.Length);
@@ -36,18 +43,48 @@ public class EntityZombieSDX: EntityZombie
         // scale down the zombies, or upscale them
         this.gameObject.transform.localScale = new Vector3(numbers[ randomIndex], numbers[randomIndex], numbers[randomIndex]);
 
+        
         // leave a 5% chance of this zombie running in the dark.
         if (random.Next(100) <= 5)
             blRunInDark = true;
         
 		GetWalkType();
 		GetApproachSpeed();
-
         
-		
+        GetTexture();
+       
     }
 
- 
+    System.Collections.IEnumerator GetTexture()
+    {
+        Texture2D tex;
+        tex = new Texture2D(4, 4, TextureFormat.DXT1, false);
+        using (WWW www = new WWW("https://github.com/SphereII/SDXWorkshop/raw/master/Alpha16.4/Textures/Zombies/ZombieBurnt.png"))
+        {
+            yield return www;
+            www.LoadImageIntoTexture(tex);
+
+            EntityClass entityClass = EntityClass.list[this.entityAlive.entityClass];
+            Debug.Log("Adding texture to game object");
+            entityClass.mesh.GetComponent<SkinnedMeshRenderer>().material.mainTexture = tex;
+        }
+
+
+    }
+
+    void FindComponent(Transform trans, string strComponentName)
+    {
+        // Check to see if the part contains "head", and let it be a headshot tag
+        // otherwise, fall back to default body
+        if (trans.name.ToLower().Contains("head"))
+            trans.gameObject.tag = "E_BP_Head";
+        else
+            trans.gameObject.tag = tag;
+
+        Log("Transoform Tag: " + trans.name + " : " + trans.tag);
+        foreach (Transform t in trans)
+            AddTagRecursively(t, tag);
+    }
     // Returns a random walk type for the spawned entity
     public static int GetRandomWalkType()
     {

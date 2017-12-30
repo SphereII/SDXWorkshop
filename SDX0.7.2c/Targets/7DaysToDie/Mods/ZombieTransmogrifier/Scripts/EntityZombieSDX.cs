@@ -43,11 +43,25 @@ public class EntityZombieSDX: EntityZombie
 		GetWalkType();
 		GetApproachSpeed();
 
-        
-		
+
+        GetTexture();
+
     }
 
- 
+    System.Collections.IEnumerator GetTexture()
+    {
+        Texture2D tex;
+        tex = new Texture2D(4, 4, TextureFormat.DXT1, false);
+        using (WWW www = new WWW("https://github.com/SphereII/SDXWorkshop/raw/master/Alpha16.4/Textures/Zombies/ZombieBurnt.png"))
+        {
+            yield return www;
+            www.LoadImageIntoTexture(tex);
+            GetComponent<SkinnedMeshRenderer>().material.mainTexture = tex;
+        }
+
+    }
+
+
     // Returns a random walk type for the spawned entity
     public static int GetRandomWalkType()
     {
